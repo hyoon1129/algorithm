@@ -1,12 +1,10 @@
 import sys
 input = sys.stdin.readline
 
-writing = input().strip()
+writing = input()
 word = input().strip()
 
-wlen = len(word)-1
 answer = 0
-idx = 0
 
 while len(writing) >= len(word) :
     if word in writing:
@@ -15,3 +13,6 @@ while len(writing) >= len(word) :
     else:
         break
 print(answer)
+
+
+# word를 input 받을 때 개행문자까지 포함되었다. strip으로 제거해주기
