@@ -1,18 +1,17 @@
 import sys
 input = sys.stdin.readline
 
-writing = input()
+writing = input().strip()
 word = input().strip()
 
+wlen = len(word)
+
 answer = 0
-
-while len(writing) >= len(word) :
-    if word in writing:
+idx = 0
+while idx < len(writing):
+    if writing[idx:idx+wlen] == word:
         answer += 1
-        writing = writing.replace(word, '0', 1)
+        idx += wlen
     else:
-        break
+        idx += 1
 print(answer)
-
-
-# word를 input 받을 때 개행문자까지 포함되었다. strip으로 제거해주기
