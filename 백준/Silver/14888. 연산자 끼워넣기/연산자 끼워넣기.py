@@ -39,3 +39,6 @@ for oper_order in set(permutations(operator)):
     if result < min :
         min = result
 print(max, min)
+
+# 같은 연산자 순서 바뀌는 경우도 모두 포함돼서 시간초과 났다. 순열에 set 넣어주니 풀리긴 풀렸다
+# 근데 찾아보니 재귀로 풀면 겁나 빠름
