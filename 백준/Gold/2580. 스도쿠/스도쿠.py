@@ -54,3 +54,7 @@ def sudoku(n):
             matrix[x][y]=0
 
 sudoku(0)
+
+
+
+# line46에서 exit이 아니라 return을 하면 모든 답을 출력. exit 하고 답 하나만 출력하게 하기 !
