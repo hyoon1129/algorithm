@@ -19,28 +19,22 @@ def solution(n, results):
         for num in win:
             for k in win[num]:
                 win[num] = list(set(win[num]+win[k]))
-                
-        for num in lose:
-            for k in lose[num]:
-                lose[num] = list(set(lose[num]+lose[k]))
-                
-    for i in range(1,n+1):
-        if len(win[i]) + len(lose[i]) == n-1 :
+    
+    # print(win)
+    # print(answer)
+    for i in range(n):
+        cnt = 0
+        for num in win:
+            if len(win[num]) == i:
+                cnt += 1
+                node = num
+        if cnt == 1:
+            answer.append(node)
+        else:
+            break
+    
+    for i in win:
+        if len(win[i]) == n-1:
             answer.append(i)
-    
-#     for i in range(n):
-#         cnt = 0
-#         for num in win:
-#             if len(win[num]) == i:
-#                 cnt += 1
-#                 node = num
-#         if cnt == 1:
-#             answer.append(node)
-#         else:
-#             break
-    
-#     for i in win:
-#         if len(win[i]) == n-1:
-#             answer.append(i)
         
     return len(set(answer))
