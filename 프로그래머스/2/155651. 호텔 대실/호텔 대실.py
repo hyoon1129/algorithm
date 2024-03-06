@@ -5,7 +5,7 @@ def solution(book_time):
         t[0] = minute(t[0])
         t[1] = minute(t[1])
     
-    book_time.sort(key = lambda x : (x[0], x[1]))
+    book_time.sort(key = lambda x : x[0])
     
     room = []
     
