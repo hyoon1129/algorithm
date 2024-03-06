@@ -17,7 +17,7 @@ def solution(book_time):
         else:
             room.append(book[1])
                 
-        # room.sort()
+        room.sort()
     
     
     return len(room)
