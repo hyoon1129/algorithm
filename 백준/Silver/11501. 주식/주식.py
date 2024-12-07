@@ -16,7 +16,6 @@ for i in range(t):
             answer += now_max - stock[j]
     li.append(answer)
 print(*li, sep = "\n")
-
 '''
 처음 제출한 코드는 입력이
 1
