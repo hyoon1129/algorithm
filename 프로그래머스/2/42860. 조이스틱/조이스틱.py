@@ -5,27 +5,6 @@ def solution(name):
     for s in name:
         result = ord(s) - ord('A')
         answer += min(result, 26-result)
-    
-    
-    
-    print(answer)
-#     right = 0
-#     left = 0
-#     for i in range(1, len(name)):
-#         if name[i] != "A":
-#             break
-#         else:
-#             right += 1
-            
-#     for i in range(len(name)-1, 0, -1):
-#         if name[i] != "A":
-#             break
-#         else:
-#             left += 1
-    
-#     answer += (len(name)-max(right, left)-1)
-
-# 1. 오른쪽으로 쭉 가거나, 2. 왼쪽으로 쭉 가거나, 3. 오른쪽 가다가 왼쪽으로, 4. 왼쪽 가다가 오른쪽으로
 
     lenA = 0
     astart= 0
@@ -37,10 +16,10 @@ def solution(name):
             aend = astart + i - 1
         else:
             break
-    print(astart, aend)
-    #   
+            
+            
     shift = len(name)-1
-    # shift = min(len(name) - lenA + min(astart-2, len(name)-aend-1), shift)
+    
     while name[shift] == 'A' and shift > 0:
         shift -= 1
         
