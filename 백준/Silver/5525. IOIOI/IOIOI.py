@@ -6,7 +6,17 @@ OI = 'OI'
 P = 'I' + OI * N
 answer = 0
 
-for i in range(M - len(P)+1):
-    if S[i:i+len(P)] == P:
-        answer += 1
+i = 0
+j = 0
+while i < M-1:
+    if S[i:i+3] == "IOI":
+        i += 2
+        j += 1
+        if j == N :
+            answer += 1
+            j -= 1
+    else:
+        i += 1
+        j = 0
+
 print(answer)
