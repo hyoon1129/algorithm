@@ -1,36 +1,38 @@
 import heapq
 
-n = int(input())    # 도시 개수
-m = int(input())    # 버스 개수
+n = int(input())
+m = int(input())
 
-graph = [[] for _ in range(n+1)]
-for _ in range(m):
-    u, v, cost = map(int, input().split())
-    graph[u].append((v, cost))  # u에서 v로 가는 비용 cost
+li = [[] for _ in range(n+1)]
+dic = {}
+for i in range(m):
+    s, e, c = map(int, input().split())
 
-start, end = map(int, input().split())
+    if s in dic:
+        dic[s].append(e)
+    else:
+        dic[s] = [e]
 
-def dijkstra(start):
-    distance = [float('inf')] * (n + 1)
-    distance[start] = 0
+    li[s].append((e, c))
 
-    pq = [(0, start)]  # (현재까지 비용, 노드 번호)
+s, e = map(int, input().split())
 
-    while pq:
-        curr_cost, curr_node = heapq.heappop(pq)
+def dijkstra():
+    dist = [float('INF')] * (n + 1)
+    dist[s] = 0
+    heap = [(0, s)] # 비용, 도시
 
-        # 이미 더 짧은 경로가 있다면 무시
-        if distance[curr_node] < curr_cost:
+    while heap:
+        cost, city = heapq.heappop(heap)
+
+        if dist[city] < cost:
             continue
+            
+        for v, c in li[city]:
+            if dist[v] > cost + c:
+                dist[v] = cost + c
+                heapq.heappush(heap, (dist[v], v))
 
-        for neighbor, edge_cost in graph[curr_node]:
-            new_cost = curr_cost + edge_cost
-
-            if distance[neighbor] > new_cost:
-                distance[neighbor] = new_cost
-                heapq.heappush(pq, (new_cost, neighbor))
-
-    return distance
-
-dist = dijkstra(start)
-print(dist[end])
+    return dist
+dist = dijkstra()
+print(dist[e])
