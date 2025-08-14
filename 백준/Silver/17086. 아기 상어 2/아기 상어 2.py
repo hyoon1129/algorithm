@@ -7,34 +7,29 @@ matrix = [list(map(int, input().split())) for _ in range(n)]
 dx = [0, 0, -1, 1, -1, 1, -1, 1]
 dy = [1, -1, 0, 0, 1, 1, -1, -1]
 
-def bfs(a, b):
+def bfs():
     visited = [[False]*m for _ in range(n)]
-    queue = deque([(a, b, 0)])
-    visited[b][a] = True
-    dist = []
+    dist = [[-1] * m for _ in range(n)]
+    queue = deque([])
 
+    for i in range(n):
+        for j in range(m):
+            if matrix[i][j] == 1:
+                queue.append((j, i))
+                dist[i][j] = 0
     while queue:
-        x, y, cnt = queue.popleft()
-
-        if matrix[y][x] == 1:
-            dist.append(cnt)
-            continue
+        x, y = queue.popleft()
 
         for i in range(8):
             nx, ny = x+dx[i], y+dy[i]
-            if 0 <= nx < m and 0 <= ny < n and not visited[ny][nx]:
-                queue.append((nx, ny, cnt+1))
+            if 0 <= nx < m and 0 <= ny < n and not visited[ny][nx] and matrix[ny][nx] != 1:
+                queue.append((nx, ny))
+                dist[ny][nx] = dist[y][x] + 1
                 visited[ny][nx] = True
 
-    if dist:
-        return min(dist)
-    else:
-        return 0
+    result = 0
+    for i in range(n):
+        result = max(result, max(dist[i]))
+    return result
 
-result = []
-for i in range(n):
-    for j in range(m):
-        if matrix[i][j] != 1:
-            result.append(bfs(j, i))
-
-print(max(result))
+print(bfs())
