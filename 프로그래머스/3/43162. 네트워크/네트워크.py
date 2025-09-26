@@ -1,19 +1,22 @@
-def dfs(i, n, computers):
-    visited[i] = True
-
-    for j in range(n):
-        if computers[i][j] == 1 and visited[j] == False:
-            dfs(j, n, computers)
-    
 def solution(n, computers):
     answer = 0
-    global visited
     
-    visited = [False] * n
+    stack = []
+    stack.append(1)
+    
+    visited = [False]*n
     
     for i in range(n):
-        if visited[i] == False:
-            dfs(i, n, computers)
+        if not visited[i]:
             answer += 1
+            stack = [i]
+            visited[i] = True
+            while stack:
+                current = stack.pop()
+                
+                for j in range(n):
+                    if computers[current][j] and not visited[j]:
+                        stack.append(j)
+                        visited[j] = True
     
     return answer
