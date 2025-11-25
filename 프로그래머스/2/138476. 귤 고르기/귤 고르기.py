@@ -1,23 +1,24 @@
 def solution(k, tangerine):
     answer = 0
-    tangerine.sort()
+    
+    tangerine = sorted(tangerine)
+    
     dic = {}
     
-    for num in tangerine:
-        if num in dic:
-            dic[num] += 1
+    for i in range(len(tangerine)):
+        if tangerine[i] in dic:
+            dic[tangerine[i]] += 1
         else:
-            dic[num] = 1
+            dic[tangerine[i]] = 1
             
-    li = []      
-    for cnt in dic.keys():
-        li.append(dic[cnt])
-    li.sort(reverse = True)
+    li = sorted(list(dic.values()), reverse = True)
     
-    a = 0
+    temp = 0
     i = 0
-    while a < k:
-        a += li[i]
+    
+    while temp < k:
         answer += 1
+        temp += li[i]
         i += 1
+    
     return answer
